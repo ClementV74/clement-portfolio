@@ -2,26 +2,23 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Github, ArrowUpRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
-interface ProjectProps {
+interface TechProjectProps {
   project: {
     title: string
     description: string
     image: string
-    github: string
     color: string
     tags: string[]
-    specialAnimation?: boolean
+    specialAnimation: boolean
   }
   index: number
   onMouseEnter: () => void
   onMouseLeave: () => void
 }
 
-export default function ProjectCard({ project, index, onMouseEnter, onMouseLeave }: ProjectProps) {
+export default function TechProjectCard({ project, index, onMouseEnter, onMouseLeave }: TechProjectProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -64,6 +61,8 @@ export default function ProjectCard({ project, index, onMouseEnter, onMouseLeave
         transition={{ duration: 0.7, ease: "easeOut" }}
       />
 
+      {/* Pas d'animation de watercooling - supprimée comme demandé */}
+
       {/* Content */}
       <div className="relative z-10 p-7 flex flex-col h-full">
         <div className="mb-4 flex gap-2 flex-wrap">
@@ -85,34 +84,8 @@ export default function ProjectCard({ project, index, onMouseEnter, onMouseLeave
           {project.description}
         </p>
 
-        <div className="mt-auto flex justify-between items-center">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => (project.github !== "#" ? window.open(project.github, "_blank") : null)}
-            className={`border-purple-500/50 text-purple-400 hover:bg-purple-500/10 transition-all duration-500 rounded-full ${
-              project.github === "#" ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            <Github className="mr-2 h-4 w-4" />
-            GitHub
-          </Button>
-
-          <motion.div
-            onClick={() => (project.github !== "#" ? window.open(project.github, "_blank") : null)}
-            className={`w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-purple-900/20 ${
-              project.github === "#" ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-            }`}
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0 0 20px rgba(138, 43, 226, 0.4)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
-          >
-            <ArrowUpRight className="w-5 h-5 text-white" />
-          </motion.div>
-        </div>
+        {/* Espace pour pousser le contenu vers le haut */}
+        <div className="mt-auto"></div>
 
         {/* Subtle animated highlight */}
         {isHovered && (

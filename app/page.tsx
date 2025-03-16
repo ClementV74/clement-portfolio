@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Github, Menu, X, ChevronDown } from "lucide-react"
 import SkillIcon from "@/components/skill-icon"
 import ProjectCard from "@/components/project-card"
+import TechProjectCard from "@/components/tech-project-card"
 import AnimatedBackground from "@/components/animated-background"
 import { Button } from "@/components/ui/button"
 
@@ -88,45 +89,119 @@ export default function Home() {
     },
   ]
 
-  const projects = [
+  // Projets organisés par catégories
+  const projectCategories = [
     {
-      title: "Mini frigo connecté",
-      description:
-        "Système intelligent de gestion alimentaire intégrant reconnaissance d'objets et assistant IA pour optimiser la conservation et réduire le gaspillage.",
-      image: "/placeholder.svg?height=300&width=500",
-      github: "https://github.com/ClementV74/Crios-Le-Mini-Frigo-IA",
-      color: "from-blue-600 to-cyan-400",
-      tags: ["IoT", "IA", "Computer Vision"],
+      id: "domotique",
+      name: "Domotique & IoT",
+      description: "Projets connectés et solutions intelligentes pour l'habitat et l'environnement",
+      projects: [
+        {
+          title: "Mini frigo connecté",
+          description:
+            "Système intelligent de gestion alimentaire intégrant reconnaissance d'objets et assistant IA pour optimiser la conservation et réduire le gaspillage.",
+          image: "/placeholder.svg?height=300&width=500",
+          github: "https://github.com/ClementV74/Crios-Le-Mini-Frigo-IA",
+          color: "from-blue-600 to-cyan-400",
+          tags: ["IoT", "IA", "Computer Vision"],
+          specialAnimation: false,
+        },
+        {
+          title: "Borne de recharge",
+          description:
+            "Interface de monitoring pour bornes de recharge solaires permettant l'analyse en temps réel et l'optimisation des ressources énergétiques.",
+          image: "/placeholder.svg?height=300&width=500",
+          github: "https://github.com/ClementV74/solar-dashboard--1-",
+          color: "from-green-600 to-emerald-400",
+          tags: ["Énergie", "Dashboard", "IoT"],
+          specialAnimation: false,
+        },
+        {
+          title: "Smart display",
+          description:
+            "Plateforme d'administration pour écrans connectés facilitant la gestion de contenu, l'analyse de données et le déploiement à distance.",
+          image: "/placeholder.svg?height=300&width=500",
+          github: "https://github.com/ClementV74/admin",
+          color: "from-orange-600 to-amber-400",
+          tags: ["Admin", "Dashboard", "Analytics"],
+          specialAnimation: false,
+        },
+      ],
     },
     {
-      title: "Agenda",
-      description:
-        "Application de planification avancée offrant synchronisation multi-appareils, notifications intelligentes et visualisation optimisée des événements.",
-      image: "/placeholder.svg?height=300&width=500",
-      github: "https://github.com/ClementV74/Agenda",
-      color: "from-purple-600 to-pink-400",
-      tags: ["Web", "Mobile", "UX/UI"],
+      id: "developpement",
+      name: "Développement",
+      description: "Applications et sites web développés avec diverses technologies",
+      projects: [
+        {
+          title: "Agenda",
+          description:
+            "Application de planification avancée offrant synchronisation multi-appareils, notifications intelligentes et visualisation optimisée des événements.",
+          image: "/placeholder.svg?height=300&width=500",
+          github: "https://github.com/ClementV74/Agenda",
+          color: "from-purple-600 to-pink-400",
+          tags: ["Web", "Mobile", "UX/UI"],
+          specialAnimation: false,
+        },
+        {
+          title: "Plateforme d'apprentissage du japonais",
+          description:
+            "Application React interactive pour apprendre le japonais avec des exercices progressifs, reconnaissance vocale et suivi de progression personnalisé.",
+          image: "/placeholder.svg?height=300&width=500",
+          github: "https://github.com/ClementV74/japanese-learning-platform--3-",
+          color: "from-red-600 to-pink-400",
+          tags: ["React", "Education", "i18n"],
+          specialAnimation: false,
+        },
+        {
+          title: "TP Ski (C++)",
+          description:
+            "Simulation de gestion de station de ski en C++ utilisant les principes de la programmation orientée objet, avec interfaces graphiques et gestion d'événements.",
+          image: "/placeholder.svg?height=300&width=500",
+          github: "https://github.com/ClementV74/tpski",
+          color: "from-blue-600 to-indigo-400",
+          tags: ["C++", "POO", "Simulation"],
+          specialAnimation: false,
+        },
+      ],
     },
     {
-      title: "Borne de recharge",
-      description:
-        "Interface de monitoring pour bornes de recharge solaires permettant l'analyse en temps réel et l'optimisation des ressources énergétiques.",
-      image: "/placeholder.svg?height=300&width=500",
-      github: "https://github.com/ClementV74/solar-dashboard--1-",
-      color: "from-green-600 to-emerald-400",
-      tags: ["Énergie", "Dashboard", "IoT"],
-    },
-    {
-      title: "Smart display",
-      description:
-        "Plateforme d'administration pour écrans connectés facilitant la gestion de contenu, l'analyse de données et le déploiement à distance.",
-      image: "/placeholder.svg?height=300&width=500",
-      github: "https://github.com/ClementV74/admin",
-      color: "from-orange-600 to-amber-400",
-      tags: ["Admin", "Dashboard", "Analytics"],
+      id: "technique",
+      name: "Compétences Techniques",
+      description: "Réalisations techniques et configurations matérielles spécialisées",
+      techProjects: [
+        {
+          title: "Configuration Switch Cisco",
+          description:
+            "Mise en place et configuration avancée de réseaux d'entreprise avec équipements Cisco, incluant VLANs, routage inter-VLAN et sécurisation des accès.",
+          image: "/placeholder.svg?height=300&width=500",
+          color: "from-blue-600 to-sky-400",
+          tags: ["Réseau", "Cisco", "Sécurité"],
+          specialAnimation: false,
+        },
+        {
+          title: "PC Watercooling Custom",
+          description:
+            "Conception et assemblage d'un PC haute performance avec système de refroidissement liquide personnalisé, optimisation thermique et overclocking.",
+          image: "/placeholder.svg?height=300&width=500",
+          color: "from-cyan-600 to-blue-400",
+          tags: ["Hardware", "Cooling", "Performance"],
+          specialAnimation: true,
+        },
+        {
+          title: "Serveur Raspberry Pi",
+          description:
+            "Installation et configuration de serveurs sur Raspberry Pi pour diverses applications : serveur web, NAS, domotique, VPN et monitoring réseau.",
+          image: "/placeholder.svg?height=300&width=500",
+          color: "from-red-600 to-pink-400",
+          tags: ["Linux", "Server", "IoT"],
+          specialAnimation: false,
+        },
+      ],
     },
   ]
 
+  // Remplacer les navItems pour inclure les nouvelles catégories
   const navItems = [
     { id: "accueil", label: "Accueil" },
     { id: "competences", label: "Compétences" },
@@ -444,23 +519,49 @@ export default function Home() {
             Découvrez mes réalisations alliant innovation technique et expérience utilisateur intuitive
           </motion.p>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-          >
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                index={index}
-                onMouseEnter={() => setCursorVariant("button")}
-                onMouseLeave={() => setCursorVariant("default")}
-              />
-            ))}
-          </motion.div>
+          {projectCategories.map((category, categoryIndex) => (
+            <div key={category.id} className="w-full max-w-6xl mb-24">
+              <motion.div
+                className="mb-10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.1 * categoryIndex, duration: 0.6 }}
+              >
+                <h3 className="text-3xl font-bold mb-3 text-purple-400">{category.name}</h3>
+                <p className="text-gray-300">{category.description}</p>
+              </motion.div>
+
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.3 + 0.1 * categoryIndex, duration: 0.8, ease: "easeOut" }}
+              >
+                {category.projects &&
+                  category.projects.map((project, index) => (
+                    <ProjectCard
+                      key={project.title}
+                      project={project}
+                      index={index}
+                      onMouseEnter={() => setCursorVariant("button")}
+                      onMouseLeave={() => setCursorVariant("default")}
+                    />
+                  ))}
+                {category.techProjects &&
+                  category.techProjects.map((project, index) => (
+                    <TechProjectCard
+                      key={project.title}
+                      project={project}
+                      index={index}
+                      onMouseEnter={() => setCursorVariant("button")}
+                      onMouseLeave={() => setCursorVariant("default")}
+                    />
+                  ))}
+              </motion.div>
+            </div>
+          ))}
         </section>
       </main>
 
